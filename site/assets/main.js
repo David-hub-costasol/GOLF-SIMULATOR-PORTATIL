@@ -6,7 +6,7 @@ const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const groups = document.querySelectorAll("main > section:not(.hero)");
 groups.forEach((section) => {
   const parts = section.querySelectorAll(
-    ".h2, .lede, .statement, .bay__draw, .bay__parts > div, .ev, .games__list > div, .board, tbody tr, .pack, .day__line li, .needs__list li, .tix, details, .points__list li, .local__cols > div, .dossier__grid > div",
+    ".h2, .lede, .statement, .gallery__grid li, .bay__draw, .bay__parts > div, .ev, .games__list > div, .board, tbody tr, .pack, .day__line li, .needs__list li, .tix, details, .points__list li, .local__cols > div, .dossier__grid > div",
   );
   parts.forEach((el, i) => {
     el.setAttribute("data-rise", "");
@@ -92,6 +92,40 @@ document.querySelectorAll("[data-tix]").forEach((form) => {
     }),
   );
   update();
+});
+
+// Gallery lightbox: tap a photo to see it large; arrows, swipe-free buttons and Esc.
+document.querySelectorAll(".gallery").forEach((gallery) => {
+  const dialog = gallery.querySelector(".lightbox");
+  if (!dialog || typeof dialog.showModal !== "function") return;
+  const links = [...gallery.querySelectorAll("[data-lightbox]")];
+  const big = dialog.querySelector("img");
+  const cap = dialog.querySelector(".lightbox__cap");
+  let index = 0;
+  const show = (i) => {
+    index = (i + links.length) % links.length;
+    const thumb = links[index].querySelector("img");
+    big.src = links[index].href;
+    big.alt = thumb.alt;
+    cap.textContent = thumb.alt;
+  };
+  links.forEach((a, i) =>
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      show(i);
+      dialog.showModal();
+    }),
+  );
+  dialog.querySelector(".lightbox__prev").addEventListener("click", () => show(index - 1));
+  dialog.querySelector(".lightbox__next").addEventListener("click", () => show(index + 1));
+  dialog.querySelector(".lightbox__close").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+  dialog.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") show(index - 1);
+    if (e.key === "ArrowRight") show(index + 1);
+  });
 });
 
 document.querySelectorAll("[data-print]").forEach((b) => b.addEventListener("click", () => window.print()));

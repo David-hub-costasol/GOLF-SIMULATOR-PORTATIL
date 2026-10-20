@@ -23,6 +23,7 @@ import {
   IMAGES,
   TEAM_PHOTOS,
   teamSection,
+  gallerySection,
 } from "./src/templates.mjs";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
@@ -45,12 +46,8 @@ cpSync(join(ROOT, "assets"), join(OUT, "assets"), { recursive: true });
 // photo's own description; with neither, it shows the plain green field with the flag.
 mkdirSync(join(OUT, "assets/img"), { recursive: true });
 const team = TEAM_PHOTOS.filter((p) => existsSync(join(ROOT, "assets/img", p.file)));
-const STAND_IN = { hero: "team-range.jpg", corporate: "team-tee.jpg", wedding: "team-together.jpg", swing: "team-green.jpg" };
 for (const [key, image] of Object.entries(IMAGES)) {
-  if (existsSync(join(ROOT, "assets/img", `${key}.jpg`))) continue;
-  const p = team.find((t) => t.file === STAND_IN[key]);
-  if (!p) continue;
-  Object.assign(image, { src: `/assets/img/${p.file}`, es: p.es, en: p.en });
+  if (existsSync(join(ROOT, "assets/img", `${key}.jpg`))) image.src = `/assets/img/${key}.jpg`;
 }
 
 for (const lang of ["es", "en"]) {
@@ -66,6 +63,7 @@ for (const lang of ["es", "en"]) {
     );
     const body = [
       hero(lang, {
+        video: true,
         title: L(lang, "Golf en tu evento", "Golf at your event"),
         statement: L(
           lang,
@@ -74,6 +72,7 @@ for (const lang of ["es", "en"]) {
         ),
       }),
       baySection(lang),
+      gallerySection(lang),
       eventsSection(lang),
       gamesSection(lang),
       scorecard(lang),
@@ -109,7 +108,7 @@ for (const lang of ["es", "en"]) {
   </div>
 </section>`;
     const body = [
-      hero(lang, { title: L(lang, `Golf en ${t.name}`, `Golf in ${t.name}`), statement: c.intro }),
+      hero(lang, { video: true, title: L(lang, `Golf en ${t.name}`, `Golf in ${t.name}`), statement: c.intro }),
       local,
       teamSection(lang, team),
       baySection(lang),

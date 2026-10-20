@@ -24,28 +24,41 @@ const wa = (text) => `https://wa.me/${BRAND.whatsapp}?text=${encodeURIComponent(
 const waGeneric = (lang) =>
   wa(L(lang, "Hola CostaSol Golf, quiero el simulador para un evento. Fecha, lugar e invitados:", "Hi CostaSol Golf, I'd like the simulator for an event. Date, venue and guests:"));
 
+// Event photos lent by PopCaddie (California) with their permission, until we have
+// photos of our own events. Each slot switches to assets/img/<key>.jpg when it exists.
 export const IMAGES = {
   hero: {
-    src: "/assets/img/hero.jpg",
-    es: "Simulador de golf hinchable en la terraza de un hotel de la Costa del Sol al atardecer",
-    en: "Inflatable golf simulator on a Costa del Sol hotel terrace at sunset",
+    src: "/assets/img/events/pc-2655.jpg",
+    es: "Simulador de golf hinchable montado en el jardín de una casa (evento de PopCaddie)",
+    en: "Inflatable golf simulator set up in a house garden (PopCaddie event)",
   },
   corporate: {
-    src: "/assets/img/corporate.jpg",
-    es: "Evento de empresa con el simulador de golf en el salón de un hotel",
-    en: "Corporate event with the golf simulator in a hotel ballroom",
+    src: "/assets/img/events/pc-3550.jpg",
+    es: "Simulador de golf montado en una oficina (evento de PopCaddie)",
+    en: "Golf simulator set up in an office (PopCaddie event)",
   },
   wedding: {
-    src: "/assets/img/wedding.jpg",
-    es: "Boda en una villa andaluza con el simulador de golf iluminado de noche",
-    en: "Wedding at an Andalusian villa with the golf simulator lit up at night",
+    src: "/assets/img/events/pc-3480.jpg",
+    es: "Invitados jugando al simulador de golf en una terraza al anochecer (evento de PopCaddie)",
+    en: "Guests playing the golf simulator on a terrace at dusk (PopCaddie event)",
   },
   swing: {
-    src: "/assets/img/swing.jpg",
-    es: "Jugador golpeando dentro del simulador de golf hinchable",
-    en: "Player hitting a shot inside the inflatable golf simulator",
+    src: "/assets/img/events/pc-4772.jpg",
+    es: "Público alrededor del simulador de golf en un evento al aire libre (evento de PopCaddie)",
+    en: "Crowd around the golf simulator at an outdoor event (PopCaddie event)",
   },
 };
+
+export const GALLERY = [
+  { src: "/assets/img/events/pc-0828.jpg", es: "Invitados mirando un golpe en un evento al aire libre", en: "Guests watching a shot at an outdoor event" },
+  { src: "/assets/img/events/pc-3480.jpg", es: "Simulador en una terraza al anochecer", en: "Simulator on a terrace at dusk" },
+  { src: "/assets/img/events/pc-3550.jpg", es: "Simulador montado en una oficina", en: "Simulator set up in an office" },
+  { src: "/assets/img/events/pc-2655.jpg", es: "Simulador en el jardín de una casa", en: "Simulator in a house garden" },
+  { src: "/assets/img/events/pc-4772.jpg", es: "Fiesta al aire libre con el simulador", en: "Outdoor party with the simulator" },
+  { src: "/assets/img/events/pc-3230.jpg", es: "Simulador montado entre árboles para un evento", en: "Simulator set up among trees for an event" },
+  { src: "/assets/img/events/pc-4419.jpg", es: "Simulador en un jardín con césped", en: "Simulator on a garden lawn" },
+  { src: "/assets/img/events/pc-1863.jpg", es: "Carpa del simulador y carpa de recepción en un evento", en: "Simulator bay and welcome tent at an event" },
+];
 
 function img(lang, key, cls = "", eager = false) {
   const i = IMAGES[key];
@@ -149,15 +162,22 @@ function footer(lang) {
     </div>
   </div>
   <p class="foot__name" aria-hidden="true">CostaSol Golf</p>
-  <p class="foot__note">${L(lang, "Imágenes ilustrativas hasta que tengamos las fotos de nuestros eventos.", "Illustrative images until we have photos from our own events.")}</p>
+  <p class="foot__note">${L(lang, "Vídeo y fotos de eventos: PopCaddie (California), con su permiso, hasta que publiquemos los de nuestros eventos.", "Event video and photos: PopCaddie (California), used with permission until we publish our own.")}</p>
 </footer>`;
 }
 
 // ---------------------------------------------------------------- sections
 
-export function hero(lang, { title, statement, imgKey = "hero", extra = "" }) {
-  return `<section class="hero">
-  ${img(lang, imgKey, "hero__pic", true)}
+export function hero(lang, { title, statement, imgKey = "hero", extra = "", video = false }) {
+  const media = video
+    ? `<figure class="pic hero__pic"><video autoplay muted loop playsinline preload="metadata" poster="/assets/video/swing-poster.jpg" aria-label="${L(
+        lang,
+        "Golpe en el simulador de golf: la bola vuela hacia el green en la pantalla",
+        "A shot in the golf simulator: the ball flies towards the green on screen",
+      )}"><source src="/assets/video/swing.mp4" type="video/mp4"></video></figure>`
+    : img(lang, imgKey, "hero__pic", true);
+  return `<section class="hero${video ? " hero--video" : ""}">
+  ${media}
   <div class="hero__text">
     <h1 class="display">${title}</h1>
     <p class="statement">${statement}</p>
@@ -493,5 +513,30 @@ export function teamSection(lang, photos) {
   <div class="team__pics">${photos
     .map((p) => `<figure class="pic"><img src="/assets/img/${p.file}" alt="${esc(p[lang])}" loading="lazy"></figure>`)
     .join("")}</div>
+</section>`;
+}
+
+// Event photos that open large when tapped (native <dialog>, works without the script as plain links).
+export function gallerySection(lang) {
+  return `<section class="gallery" id="galeria">
+  <div class="gallery__head">
+    <h2 class="h2">${L(lang, "Así es un evento", "What an event looks like")}</h2>
+    <p class="lede">${L(
+      lang,
+      "Jardines, terrazas, oficinas y fiestas: la carpa se adapta al sitio y el público se queda alrededor.",
+      "Gardens, terraces, offices and parties: the bay fits the venue and the crowd gathers round.",
+    )}</p>
+  </div>
+  <ul class="gallery__grid">${GALLERY.map(
+    (g, i) => `<li><a href="${g.src}" data-lightbox="${i}"><img src="${g.src}" alt="${esc(g[lang])}" loading="lazy"></a></li>`,
+  ).join("")}</ul>
+  <p class="note">${L(lang, "Fotos de eventos de PopCaddie en California, usadas con su permiso.", "Photos of PopCaddie events in California, used with permission.")}</p>
+  <dialog class="lightbox" aria-label="${L(lang, "Foto ampliada", "Enlarged photo")}">
+    <img alt="">
+    <p class="lightbox__cap"></p>
+    <button type="button" class="lightbox__btn lightbox__prev" aria-label="${L(lang, "Anterior", "Previous")}">‹</button>
+    <button type="button" class="lightbox__btn lightbox__next" aria-label="${L(lang, "Siguiente", "Next")}">›</button>
+    <button type="button" class="lightbox__btn lightbox__close" aria-label="${L(lang, "Cerrar", "Close")}">×</button>
+  </dialog>
 </section>`;
 }
