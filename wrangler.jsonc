@@ -1,0 +1,9 @@
+// Cloudflare Workers config: serves the generated static site in ./site.
+{
+  "name": "golf-simulator-portatil",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./site",
+    "not_found_handling": "404-page"
+  }
+}
