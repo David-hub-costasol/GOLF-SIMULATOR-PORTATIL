@@ -24,6 +24,7 @@ import {
   TEAM_PHOTOS,
   teamSection,
   gallerySection,
+  villaForm,
 } from "./src/templates.mjs";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
@@ -181,6 +182,76 @@ for (const lang of ["es", "en"]) {
     const desc = L(lang, "Espacio, montaje, lluvia, precios y reservas del simulador de golf para eventos en la Costa del Sol.", "Space, set-up, rain, prices and bookings for the event golf simulator on the Costa del Sol.");
     const body = [`<section class="pagehead"><h1 class="display">${L(lang, "Preguntas", "Questions")}</h1><p class="statement">${desc}</p></section>`, faqSection(lang), needs(lang), ticket(lang)].join("\n");
     write(paths.faq(lang), layout({ lang, path: paths.faq(lang), alt: paths.faq(other), title, desc, body, schema: [faqSchema(lang)] }));
+  }
+
+  // ------------------------------------------------------------ simulator for your villa (sales)
+  {
+    const title = L(lang, "Simulador de golf para tu villa o casa | Costa del Sol", "Golf simulator for your villa or home | Costa del Sol");
+    const desc = L(
+      lang,
+      "Carpas de golf hinchables y simuladores completos para villas, casas, clubes y hoteles de la Costa del Sol. Con tu logo o tus colores, instalados y configurados.",
+      "Inflatable golf bays and complete golf simulators for villas, homes, clubs and hotels on the Costa del Sol. With your logo or colours, installed and set up.",
+    );
+    const options = L(
+      lang,
+      [
+        ["Carpa sola", "La carpa hinchable con pantalla de impacto y soporte de proyector, con tu logo o tus colores. Se infla en el jardín o la terraza y se guarda en un armario.", ["Carpa con tu logo o colores", "Pantalla de impacto", "Soporte de proyector en el techo", "Bomba o turbina de 230 V"]],
+        ["Simulador completo", "La carpa más todo lo necesario para jugar: monitor de lanzamiento, proyector, tapete y software. Lo instalamos, lo configuramos y te enseñamos a usarlo.", ["Todo lo de la carpa sola", "Monitor de lanzamiento y software de campos", "Proyector de tiro corto y tapete", "Instalación y explicación en tu casa"]],
+        ["Sala fija a medida", "Para un garaje, sótano o casa de invitados: sin carpa, con pantalla, marco y laterales a medida del espacio.", ["Visita y medición del espacio", "Pantalla y marco a medida", "Equipo según tu juego y presupuesto", "Montaje completo"]],
+      ],
+      [
+        ["Bay only", "The inflatable bay with impact screen and projector mount, with your logo or colours. Inflate it in the garden or on the terrace and store it in a cupboard.", ["Bay with your logo or colours", "Impact screen", "Roof projector mount", "230 V pump or blower"]],
+        ["Complete simulator", "The bay plus everything you need to play: launch monitor, projector, mat and software. We install it, set it up and show you how to use it.", ["Everything in the bay-only option", "Launch monitor and course software", "Short-throw projector and mat", "Installed and explained at your home"]],
+        ["Custom fixed room", "For a garage, basement or guest house: no bay, with a screen, frame and side panels made to fit the space.", ["Visit and measurement of the space", "Made-to-measure screen and frame", "Kit chosen for your game and budget", "Full installation"]],
+      ],
+    );
+    const faq = L(
+      lang,
+      [
+        ["¿Cuánto espacio necesito?", `Para jugar con driver, unos ${BAY.spaceDepth} × ${BAY.spaceWidth} m y 3,2 m de altura libre. Para hierros y putt basta con menos; te ayudamos a medir.`],
+        ["¿Puede quedarse fuera todo el año?", "La carpa aguanta el sol y la lluvia ligera, pero conviene desinflarla y guardarla con viento fuerte o cuando no la uses durante semanas. Así dura mucho más."],
+        ["¿Cuánto tarda?", "Depende de la opción: la carpa se fabrica con tu logo en unas 4–8 semanas; una sala fija, según la obra."],
+        ["¿Quién lo instala y lo arregla?", "Nosotros. Estamos en Estepona: lo instalamos, te explicamos cómo usarlo y te ayudamos si algo falla."],
+        ["¿Se puede probar antes?", "Sí: alquila el simulador para un evento o una tarde en tu casa y decide después."],
+      ],
+      [
+        ["How much space do I need?", `To play with a driver, about ${BAY.spaceDepth} × ${BAY.spaceWidth} m and 3.2 m of clear height. Irons and putting need less; we help you measure.`],
+        ["Can it stay outside all year?", "The bay handles sun and light rain, but it is best deflated and stored in strong wind or when unused for weeks. It lasts much longer that way."],
+        ["How long does it take?", "It depends on the option: the bay is made with your logo in about 4–8 weeks; a fixed room depends on the works."],
+        ["Who installs and fixes it?", "We do. We are based in Estepona: we install it, show you how to use it and help if anything goes wrong."],
+        ["Can I try it first?", "Yes: hire the simulator for an event or an afternoon at your home and decide afterwards."],
+      ],
+    );
+    const body = [
+      hero(lang, {
+        imgKey: "villa",
+        title: L(lang, "Golf en tu villa", "Golf at your villa"),
+        statement: L(
+          lang,
+          "Tu propio simulador de golf en el jardín, la terraza o el garaje, con tu logo o tus colores. Lo instalamos en toda la Costa del Sol.",
+          "Your own golf simulator in the garden, on the terrace or in the garage, with your logo or colours. Installed anywhere on the Costa del Sol.",
+        ),
+        price: false,
+        cta: L(lang, "Pedir presupuesto", "Ask for a quote"),
+        ctaHref: "#presupuesto",
+      }),
+      `<section class="packs">
+  <h2 class="h2">${L(lang, "Tres formas de tenerlo", "Three ways to have it")}</h2>
+  <div class="packs__row">${options
+    .map(
+      ([t, d, items], i) => `<div class="pack${i === 1 ? " pack--main" : ""}"><h3 class="h3">${t}</h3><p>${d}</p><ul>${items.map((x) => `<li>${x}</li>`).join("")}</ul></div>`,
+    )
+    .join("")}</div>
+  <p class="note">${L(lang, "Precio según opción, tamaño y equipo. Te enviamos presupuesto cerrado.", "Price depends on option, size and equipment. We send you a fixed quote.")}</p>
+</section>`,
+      gallerySection(lang),
+      baySection(lang),
+      villaForm(lang, options.map((o) => o[0])),
+      `<section class="faq"><h2 class="h2">${L(lang, "Preguntas", "Questions")}</h2><div class="faq__list">${faq
+        .map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`)
+        .join("")}</div></section>`,
+    ].join("\n");
+    write(paths.villa(lang), layout({ lang, path: paths.villa(lang), alt: paths.villa(other), title, desc, body }));
   }
 
   // ------------------------------------------------------------ dossier (printable, for hotels and agencies)

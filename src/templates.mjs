@@ -17,6 +17,7 @@ export const paths = {
   prices: (lang) => (lang === "es" ? "/precios/" : "/en/prices/"),
   faq: (lang) => (lang === "es" ? "/preguntas/" : "/en/faq/"),
   dossier: (lang) => (lang === "es" ? "/dossier/" : "/en/dossier/"),
+  villa: (lang) => (lang === "es" ? "/simulador-para-tu-villa/" : "/en/golf-simulator-for-your-villa/"),
   legal: (lang) => (lang === "es" ? "/legal/" : "/en/legal/"),
 };
 
@@ -41,6 +42,11 @@ export const IMAGES = {
     src: "/assets/img/events/pc-3480.jpg",
     es: "Invitados jugando al simulador de golf en una terraza al anochecer (evento de PopCaddie)",
     en: "Guests playing the golf simulator on a terrace at dusk (PopCaddie event)",
+  },
+  villa: {
+    src: "/assets/img/events/pc-4419.jpg",
+    es: "Simulador de golf hinchable en el jardín de una casa (foto de PopCaddie)",
+    en: "Inflatable golf simulator in a house garden (PopCaddie photo)",
   },
   swing: {
     src: "/assets/img/events/pc-4772.jpg",
@@ -80,6 +86,7 @@ export function layout({ lang, path, alt, title, desc, body, schema = [] }) {
     [L(lang, "Eventos", "Events"), `${paths.home(lang)}#eventos`],
     [L(lang, "Zonas", "Areas"), `${paths.home(lang)}#zonas`],
     [L(lang, "Precios", "Prices"), paths.prices(lang)],
+    [L(lang, "Para tu villa", "For your villa"), paths.villa(lang)],
     [L(lang, "Preguntas", "FAQ"), paths.faq(lang)],
   ];
   return `<!doctype html>
@@ -149,6 +156,7 @@ function footer(lang) {
     <nav aria-label="${L(lang, "Eventos", "Events")}">
       <p class="foot__h">${L(lang, "Eventos", "Events")}</p>
       ${EVENTS.map((e) => `<a href="${paths.event(lang, e)}">${e[lang].name}</a>`).join("")}
+      <a href="${paths.villa(lang)}">${L(lang, "Simulador para tu villa", "Golf simulator for your villa")}</a>
       <a href="${paths.dossier(lang)}">${L(lang, "Dossier para hoteles y agencias", "Brochure for hotels and agencies")}</a>
     </nav>
     <div>
@@ -168,7 +176,7 @@ function footer(lang) {
 
 // ---------------------------------------------------------------- sections
 
-export function hero(lang, { title, statement, imgKey = "hero", extra = "", video = false }) {
+export function hero(lang, { title, statement, imgKey = "hero", extra = "", video = false, price = true, cta, ctaHref = "#reservar" }) {
   const media = video
     ? `<figure class="pic hero__pic"><video autoplay muted loop playsinline preload="metadata" poster="/assets/video/swing-poster.jpg" aria-label="${L(
         lang,
@@ -181,12 +189,12 @@ export function hero(lang, { title, statement, imgKey = "hero", extra = "", vide
   <div class="hero__text">
     <h1 class="display">${title}</h1>
     <p class="statement">${statement}</p>
-    <p class="hero__price"><span>${L(lang, "Desde", "From")}</span> <strong>${euro(lang, PRICE.base)}</strong> <span>${L(
+    ${price ? `<p class="hero__price"><span>${L(lang, "Desde", "From")}</span> <strong>${euro(lang, PRICE.base)}</strong> <span>${L(
       lang,
       `+ IVA · ${PRICE.baseHours} horas con técnico`,
       `+ VAT · ${PRICE.baseHours} hours with a technician`,
-    )}</span></p>
-    <p class="hero__actions"><a class="btn btn--flag" href="#reservar">${L(lang, "Reservar fecha", "Book a date")}</a>
+    )}</span></p>` : ""}
+    <p class="hero__actions"><a class="btn btn--flag" href="${ctaHref}">${cta || L(lang, "Reservar fecha", "Book a date")}</a>
     <a class="btn btn--line" href="${waGeneric(lang)}" target="_blank" rel="noopener">WhatsApp</a></p>
     ${extra}
   </div>
@@ -538,5 +546,33 @@ export function gallerySection(lang) {
     <button type="button" class="lightbox__btn lightbox__next" aria-label="${L(lang, "Siguiente", "Next")}">›</button>
     <button type="button" class="lightbox__btn lightbox__close" aria-label="${L(lang, "Cerrar", "Close")}">×</button>
   </dialog>
+</section>`;
+}
+
+// Quote form for buying a simulator: composes a WhatsApp / email message, no backend.
+export function villaForm(lang, options) {
+  return `<section class="book" id="presupuesto">
+  <div class="book__text">
+    <h2 class="h2">${L(lang, "Pide tu presupuesto", "Ask for your quote")}</h2>
+    <p class="lede">${L(
+      lang,
+      "Cuéntanos dónde lo quieres y qué opción te interesa. Te respondemos con propuesta, plazo y precio cerrado.",
+      "Tell us where you want it and which option you like. We reply with a proposal, timing and a fixed price.",
+    )}</p>
+  </div>
+  <form class="tix" data-quote data-lang="${lang}" data-wa="${BRAND.whatsapp}" data-mail="${BRAND.email}">
+    <div class="tix__stub" aria-hidden="true"><span>CostaSol Golf</span><span>${L(lang, "Presupuesto", "Quote")}</span></div>
+    <div class="tix__body">
+      <label class="tix__wide">${L(lang, "Opción", "Option")}<select name="option">${options.map((o) => `<option>${o}</option>`).join("")}</select></label>
+      <label>${L(lang, "Zona", "Area")}<select name="town">${TOWNS.map((t) => `<option>${t.name}</option>`).join("")}<option>${L(lang, "Otra zona", "Other area")}</option></select></label>
+      <label>${L(lang, "Dónde", "Where")}<select name="place"><option>${L(lang, "Jardín o terraza", "Garden or terrace")}</option><option>${L(lang, "Garaje o sótano", "Garage or basement")}</option><option>${L(lang, "Casa de invitados", "Guest house")}</option><option>${L(lang, "Club u hotel", "Club or hotel")}</option></select></label>
+      <label class="tix__wide">${L(lang, "Medidas del espacio (aprox.)", "Space size (approx.)")}<input name="space" placeholder="${L(lang, "Ej.: 6 × 5 m, techo 3,2 m", "E.g. 6 × 5 m, 3.2 m ceiling")}"></label>
+      <label class="tix__wide">${L(lang, "Tu nombre", "Your name")}<input name="name" autocomplete="name"></label>
+      <p class="tix__actions">
+        <a class="btn btn--flag" data-send="wa" href="https://wa.me/${BRAND.whatsapp}" target="_blank" rel="noopener">${L(lang, "Enviar por WhatsApp", "Send on WhatsApp")}</a>
+        <a class="btn btn--line" data-send="mail" href="mailto:${BRAND.email}">${L(lang, "Enviar por email", "Send by email")}</a>
+      </p>
+    </div>
+  </form>
 </section>`;
 }

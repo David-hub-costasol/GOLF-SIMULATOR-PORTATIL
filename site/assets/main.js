@@ -128,6 +128,35 @@ document.querySelectorAll(".gallery").forEach((gallery) => {
   });
 });
 
+// Villa quote form: same idea as the ticket, without a price.
+document.querySelectorAll("[data-quote]").forEach((form) => {
+  const d = form.dataset;
+  const es = d.lang === "es";
+  const wa = form.querySelector('[data-send="wa"]');
+  const mail = form.querySelector('[data-send="mail"]');
+  function update() {
+    const f = new FormData(form);
+    const text = [
+      es ? "Hola CostaSol Golf, quiero presupuesto de un simulador para mi casa:" : "Hi CostaSol Golf, I'd like a quote for a golf simulator at home:",
+      `${es ? "Opción" : "Option"}: ${f.get("option")}`,
+      `${es ? "Zona" : "Area"}: ${f.get("town")}`,
+      `${es ? "Dónde" : "Where"}: ${f.get("place")}`,
+      f.get("space") ? `${es ? "Espacio" : "Space"}: ${f.get("space")}` : "",
+      f.get("name") ? `${es ? "Nombre" : "Name"}: ${f.get("name")}` : "",
+    ].filter(Boolean).join("\n");
+    wa.href = `https://wa.me/${d.wa}?text=${encodeURIComponent(text)}`;
+    mail.href = `mailto:${d.mail}?subject=${encodeURIComponent(es ? "Presupuesto simulador para casa" : "Home golf simulator quote")}&body=${encodeURIComponent(text)}`;
+  }
+  form.addEventListener("input", update);
+  form.addEventListener("submit", (e) => e.preventDefault());
+  [wa, mail].forEach((a) =>
+    a.addEventListener("click", () => {
+      if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { method: a.dataset.send, page: location.pathname, type: "villa" });
+    }),
+  );
+  update();
+});
+
 document.querySelectorAll("[data-print]").forEach((b) => b.addEventListener("click", () => window.print()));
 
 // The bar sits on the dark hero; on pages without a hero it switches to ink.
