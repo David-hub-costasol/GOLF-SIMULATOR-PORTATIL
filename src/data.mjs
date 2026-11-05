@@ -12,7 +12,7 @@ export const BRAND = {
 };
 
 // Event prices in EUR before VAT.
-export const PRICE = { base: 790, baseHours: 4, extraHour: 150, maxHours: 10 };
+export const PRICE = { base: 890, baseHours: 4, extraHour: 150, maxHours: 10 };
 
 // The enclosure we plan to buy (PopCaddie-size bay) and what the venue needs.
 export const BAY = { depth: 4.6, width: 4.2, height: 3.3, spaceDepth: 6, spaceWidth: 5, clearHeight: 3.5 };

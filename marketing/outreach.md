@@ -24,7 +24,7 @@ dossier (`https://costasolgolf.com/dossier/`). Personalizar la primera línea co
 > 90 minutos en una terraza o un salón y juegan todos los huéspedes, sepan o no.
 >
 > Lo están pidiendo para eventos de empresa, cenas de Navidad y fines de semana de animación.
-> Desde 790 € + IVA las 4 horas, con técnico, montaje y desmontaje. Para hoteles tenemos
+> Desde 890 € + IVA las 4 horas, con técnico, montaje y desmontaje. Para hoteles tenemos
 > condiciones de colaboración.
 >
 > Te dejo el dossier: https://costasolgolf.com/dossier/
@@ -43,7 +43,7 @@ dossier (`https://costasolgolf.com/dossier/`). Personalizar la primera línea co
 > cóctel o la fiesta, los invitados juegan a "bola más cerca" con ranking en pantalla y premio para
 > el ganador. De noche queda espectacular.
 >
-> Lo montamos antes de que lleguen los invitados y un técnico lo atiende todo el evento. Desde 790 €
+> Lo montamos antes de que lleguen los invitados y un técnico lo atiende todo el evento. Desde 890 €
 > + IVA. Para wedding planners tenemos comisión o precio de colaborador.
 >
 > Dossier: https://costasolgolf.com/dossier/
@@ -62,7 +62,7 @@ dossier (`https://costasolgolf.com/dossier/`). Personalizar la primera línea co
 > empresa en toda la Costa del Sol: torneos por equipos, bola más cerca y drive más largo con ranking
 > en directo, y la carpa y la pantalla con el logo del cliente si lo necesitáis.
 >
-> 790 € + IVA las 4 horas, 1.390 € el día completo. Tarifa de agencia bajo petición.
+> 890 € + IVA las 4 horas, 1.490 € el día completo. Tarifa de agencia bajo petición.
 >
 > Dossier: https://costasolgolf.com/dossier/
 >
@@ -100,7 +100,7 @@ dossier (`https://costasolgolf.com/dossier/`). Personalizar la primera línea co
 >
 > I'm David from CostaSol Golf, based in Estepona. We bring an inflatable golf simulator with a
 > technician to events across the Costa del Sol: corporate days, weddings, villa parties and
-> tournaments. Set-up takes 90 minutes, everyone can play, and it starts at €790 + VAT for 4 hours.
+> tournaments. Set-up takes 90 minutes, everyone can play, and it starts at €890 + VAT for 4 hours.
 >
 > Brochure: https://costasolgolf.com/en/dossier/
 >
