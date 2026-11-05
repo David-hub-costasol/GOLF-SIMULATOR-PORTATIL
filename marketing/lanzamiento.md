@@ -17,7 +17,7 @@ dispuestos a pagar señal**, se compra todo (carpa, monitor, proyector, pantalla
 | Email | Crear `hola@costasolgolf.com` (con el dominio, o Gmail aparte) | 10 min | 0–6 €/mes |
 | Google Business | Crear el perfil con los textos de `google-business.md` | 20 min | 0 € |
 | Instagram | Crear `@costasolgolf` con los textos de `instagram.md` | 15 min | 0 € |
-| Precios | Confirmar 790 € / 4 h y 150 € la hora extra (o cambiarlos) | 1 min | — |
+| Precios | Confirmar 890 € / 4 h y 150 € la hora extra (o cambiarlos) | 1 min | — |
 
 ## Lo que hago yo en cuanto tenga acceso
 

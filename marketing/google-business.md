@@ -23,31 +23,31 @@ ES:
 > de golf con pantalla de impacto, proyector y monitor de lanzamiento a tu hotel, villa, boda,
 > evento de empresa o feria, de Málaga a Sotogrande. Incluye técnico durante todo el evento,
 > montaje, desmontaje, palos de diestro y zurdo, y juegos como bola más cerca y drive más largo con
-> ranking en pantalla. Juega todo el mundo, sepa o no. Desde 790 € + IVA las 4 horas. Interior o
+> ranking en pantalla. Juega todo el mundo, sepa o no. Desde 890 € + IVA las 4 horas. Interior o
 > exterior: solo necesitamos un espacio llano de 6 × 5 m y un enchufe. Pide presupuesto por WhatsApp
 > y te confirmamos disponibilidad en el día.
 
 EN (añadir como publicación fija o en la web):
 > Inflatable golf simulator hire for events across the Costa del Sol. We bring a golf bay with an
 > impact screen, projector and launch monitor to your hotel, villa, wedding, corporate event or
-> fair, from Málaga to Sotogrande. A technician runs it for the whole event. From €790 + VAT for 4
+> fair, from Málaga to Sotogrande. A technician runs it for the whole event. From €890 + VAT for 4
 > hours.
 
 ## Servicios (con precio)
 
 | Servicio | Precio | Descripción |
 |---|---|---|
-| Simulador de golf · 4 horas | 790 € + IVA | Carpa, técnico, montaje, palos y juegos |
-| Simulador de golf · día completo (8 h) | 1.390 € + IVA | Para hoteles, ferias y jornadas de empresa |
+| Simulador de golf · 4 horas | 890 € + IVA | Carpa, técnico, montaje, palos y juegos |
+| Simulador de golf · día completo (8 h) | 1.490 € + IVA | Para hoteles, ferias y jornadas de empresa |
 | Hora extra | 150 € + IVA | Amplía cualquier evento |
 | Torneo o varios días con tu marca | Presupuesto | Carpa y pantalla con logo, rankings, premios |
-| Simulador de golf para bodas | Desde 790 € + IVA | Bola más cerca durante el cóctel o la fiesta |
-| Team building con golf | Desde 790 € + IVA | Ranking por equipos y premios |
+| Simulador de golf para bodas | Desde 890 € + IVA | Bola más cerca durante el cóctel o la fiesta |
+| Team building con golf | Desde 890 € + IVA | Ranking por equipos y premios |
 
 ## Primeras publicaciones (una por semana)
 
 1. **Novedad:** "Llega a la Costa del Sol el simulador de golf para eventos. Bodas, empresas,
-   villas y torneos, de Málaga a Sotogrande. Desde 790 € las 4 horas." Botón: Más información → web.
+   villas y torneos, de Málaga a Sotogrande. Desde 890 € las 4 horas." Botón: Más información → web.
 2. **Oferta Navidad:** "Cena de empresa diferente: torneo de golf por equipos con ranking en
    pantalla. Reserva tu fecha de diciembre." Botón: Reservar → `/eventos/empresas/`.
 3. **Bodas 2027:** "Bola más cerca durante el cóctel: el juego que todos tus invitados recordarán."
