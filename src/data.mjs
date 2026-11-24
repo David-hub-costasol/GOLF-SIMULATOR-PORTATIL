@@ -5,6 +5,8 @@ export const BRAND = {
   name: "CostaSol Golf",
   domain: "https://costasolgolf.com", // to confirm once the domain is bought
   whatsapp: "34622867810",
+  gaId: "", // Google Analytics 4 measurement ID (G-XXXXXXXXXX); the tag is only added when set
+  firstDate: "2027-04-01", // earliest date we take pre-bookings for
   phoneLabel: "+34 622 867 810",
   email: "david@costasolbeachequipment.com",
   base: "Estepona, Málaga",
@@ -267,7 +269,7 @@ export const FAQ = {
     ["¿Puedo usar mis palos?", "Sí. También llevamos palos de diestro y zurdo para todos."],
     ["¿Cuánto se tarda en montar?", "Llegamos unos 90 minutos antes del evento y desmontamos en unos 45 minutos al terminar. El tiempo de montaje no cuenta en tus horas."],
     ["¿Qué incluye el precio?", `${PRICE.baseHours} horas de juego, técnico, transporte de Málaga a Sotogrande, montaje, desmontaje, palos, bolas y juegos. Cada hora extra son ${PRICE.extraHour} € + IVA.`],
-    ["¿Cómo se reserva?", "Pides presupuesto, te confirmamos disponibilidad y la fecha queda reservada con una señal. Sin pago no hay reserva."],
+    ["¿Cómo se reserva?", "Estamos en fase de estreno: pre-reservas tu fecha sin pago y con cancelación gratuita, y te confirmamos por escrito. Pedimos la señal solo cuando confirmamos que el equipo está listo."],
     ["¿Podéis poner mi logo?", "Sí, en la carpa y en la pantalla. Pídelo con al menos 4 semanas de antelación."],
   ],
   en: [
@@ -279,7 +281,7 @@ export const FAQ = {
     ["Can I bring my own clubs?", "Yes. We also bring right- and left-handed clubs for everyone."],
     ["How long does set-up take?", "We arrive about 90 minutes before the event and pack down in about 45 minutes afterwards. Set-up time doesn't count towards your hours."],
     ["What does the price include?", `${PRICE.baseHours} hours of play, a technician, travel between Málaga and Sotogrande, set-up, pack-down, clubs, balls and games. Each extra hour is €${PRICE.extraHour} + VAT.`],
-    ["How do I book?", "Ask for a quote, we confirm availability and the date is held with a deposit. No payment, no booking."],
+    ["How do I book?", "We are in our launch phase: you pre-book your date with no payment and free cancellation, and we confirm in writing. We only ask for a deposit once we confirm the equipment is ready."],
     ["Can you add my logo?", "Yes, on the bay and on the screen. Ask at least 4 weeks ahead."],
   ],
 };

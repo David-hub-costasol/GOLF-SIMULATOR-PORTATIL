@@ -349,3 +349,6 @@ main > section:last-child { padding-bottom: var(--gap); }
   .dossier { padding-top: 0 !important; }
   .display { font-size: 48pt; }
 }
+
+.launch{margin:0;padding:.6rem 1rem;background:#0f3d2e;color:#f6f0e0;text-align:center;font-size:.9rem;line-height:1.4}
+.launch a{color:#e3b84a;font-weight:700;text-decoration:underline;margin-left:.4rem}

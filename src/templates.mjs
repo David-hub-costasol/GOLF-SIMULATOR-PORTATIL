@@ -112,10 +112,12 @@ ${alt ? `<link rel="alternate" hreflang="${other}" href="${BRAND.domain + alt}">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/styles.css">
+${BRAND.gaId ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${BRAND.gaId}"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${BRAND.gaId}");</script>` : ""}
 ${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join("\n")}
 </head>
 <body>
 <a class="skip" href="#main">${L(lang, "Saltar al contenido", "Skip to content")}</a>
+<p class="launch"><strong>${L(lang, "Estrenamos en 2027.", "Launching in 2027.")}</strong> ${L(lang, "Estamos abriendo agenda para las primeras fechas, desde abril. Pre-reserva la tuya sin pago: precio garantizado y te confirmamos por escrito en cuanto el equipo esté listo.", "We are opening the calendar for our first dates, from April. Pre-book yours with no payment: price guaranteed, and we confirm in writing as soon as the equipment is ready.")} <a href="#reservar">${L(lang, "Pre-reservar mi fecha", "Pre-book my date")}</a></p>
 <header class="bar">
   <a class="bar__mark" href="${paths.home(lang)}" aria-label="${BRAND.name}">${wordmark()}</a>
   <nav class="bar__nav" aria-label="${L(lang, "Principal", "Main")}">
@@ -433,13 +435,13 @@ export function ticket(lang, { town = "", event = "" } = {}) {
   const townOpts = TOWNS.map((t) => `<option${t.slug === town ? " selected" : ""}>${t.name}</option>`).join("");
   return `<section class="book" id="reservar">
   <div class="book__text">
-    <h2 class="h2">${L(lang, "Reserva tu tee time", "Book your tee time")}</h2>
+    <h2 class="h2">${L(lang, "Pre-reserva tu tee time", "Pre-book your tee time")}</h2>
     <p class="lede">${L(
       lang,
       "Elige zona, fecha y horas: ves el precio al momento y nos lo mandas por WhatsApp o email. Te confirmamos disponibilidad en el día.",
       "Choose the area, date and hours: you see the price straight away and send it to us by WhatsApp or email. We confirm availability the same day.",
     )}</p>
-    <p class="note">${L(lang, "La fecha queda reservada al pagar la señal.", "The date is held once the deposit is paid.")}</p>
+    <p class="note">${L(lang, "Pre-reserva sin pago y con cancelación gratuita. Te confirmamos fecha y condiciones por escrito; la señal solo se pide cuando confirmamos que el equipo está listo.", "Pre-booking is free, with free cancellation. We confirm date and terms in writing; a deposit is only requested once we confirm the equipment is ready.")}</p>
   </div>
   <form class="tix" data-tix data-lang="${lang}" data-base="${PRICE.base}" data-hours="${PRICE.baseHours}" data-extra="${PRICE.extraHour}" data-wa="${BRAND.whatsapp}" data-mail="${BRAND.email}">
     <div class="tix__stub" aria-hidden="true"><span>CostaSol Golf</span><span>Tee time</span></div>
