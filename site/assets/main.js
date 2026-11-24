@@ -57,7 +57,7 @@ document.querySelectorAll("[data-tix]").forEach((form) => {
     const date = f.get("date");
     const lines = es
       ? [
-          "Hola CostaSol Golf, quiero reservar el simulador de golf:",
+          "Hola CostaSol Golf, quiero pre-reservar el simulador de golf:",
           `Zona: ${f.get("town")}`,
           `Evento: ${f.get("event")}`,
           `Fecha: ${date || "por decidir"}`,
@@ -66,7 +66,7 @@ document.querySelectorAll("[data-tix]").forEach((form) => {
           f.get("name") ? `Nombre: ${f.get("name")}` : "",
         ]
       : [
-          "Hi CostaSol Golf, I'd like to book the golf simulator:",
+          "Hi CostaSol Golf, I'd like to pre-book the golf simulator:",
           `Area: ${f.get("town")}`,
           `Event: ${f.get("event")}`,
           `Date: ${date || "to be decided"}`,
@@ -84,7 +84,7 @@ document.querySelectorAll("[data-tix]").forEach((form) => {
   form.addEventListener("submit", (e) => e.preventDefault());
   const today = new Date().toISOString().slice(0, 10);
   const dateInput = form.querySelector('input[type="date"]');
-  if (dateInput) dateInput.min = today;
+  if (dateInput) dateInput.min = today > "2027-04-01" ? today : "2027-04-01";
   // Count each send as a lead in analytics, when a tag is installed.
   [wa, mail].forEach((a) =>
     a.addEventListener("click", () => {
